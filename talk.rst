@@ -25,6 +25,95 @@ athornton@gmail.com
 .. role:: raw-role(raw)
     :format: html
 
+Preliminaries
+#############
+
+All software sucks.
+
+All hardware sucks.
+
+I hope to convince you in the next few dozen minutes that Go sucks less than most software.
+
+----
+
+tl;dr
+#####
+
+.. image:: images/Learn-Go.png
+  :height: 400px
+
+Apologies to Randall Monroe
+
+https://xkcd.com/918/
+
+----
+
+You Can Leave Now
+#################
+
+That was the important part.
+
+----
+
+Yeah, But What Does That Even *Mean*?
+#####################################
+
+If Go feels like **programming**,
+
+...C feels like programming naked,
+
+...Python feels like programming with training wheels,
+
+...Perl feels like unicycling naked,
+
+...Java feels like programming while wearing mittens,
+
+...COBOL feels like programming while wearing handcuffs while drunk in the back of a police cruiser,
+
+...and PHP feels like punching yourself in the balls over and over.
+
+----
+
+A Slightly Less Pungent Version?
+################################
+
+Ways Go is like C (an incomplete list):
+
+- Small: 25 keywords
+
+  - C:
+  
+    - ANSI C: 32
+    - C99: 36
+    - C11: 45
+
+  - Java: 50
+  - PHP: 67
+
+- Statically typed
+- Ken Thompson and Rob Pike wrote a lot of it
+- Fundamentally procedural
+- Programming hipsters hate it
+
+----
+
+But then why not just use C?
+############################
+
+Things Go Does Better Than C (an incomplete list):
+
+- No explicit memory management
+- Much better type-safety
+- Very rich set of standard libraries
+- Import dependency management
+- The range operator
+- Interfaces
+- Concurrency
+- Native map type
+- A 2006 view of what's cheap and expensive, not a 1975 view
+
+----
+
 Questions?
 ##########
 

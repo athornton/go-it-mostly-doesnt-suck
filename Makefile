@@ -1,7 +1,7 @@
 all:	out/index.html
 
 out/index.html:	Makefile talk.rst css/talk.css css/talk_dark.css \
- images/sp-adam.png 
+ images/sp-adam.png images/Learn-Go.png
 	hovercraft talk.rst out
 
 clean:
