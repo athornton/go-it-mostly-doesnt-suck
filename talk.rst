@@ -32,6 +32,8 @@ All software sucks.
 
 All hardware sucks.
 
+All users suck.
+
 I hope to convince you in the next few dozen minutes that Go sucks less than most software.
 
 ----
@@ -58,7 +60,7 @@ That was the important part.
 Yeah, But What Does That Even *Mean*?
 #####################################
 
-If Go feels like **programming**,
+If Go feels like **programming**, then...
 
 ...C feels like programming naked,
 
@@ -66,9 +68,11 @@ If Go feels like **programming**,
 
 ...Perl feels like unicycling naked,
 
+...LISP feels like wielding an elegant weapon for a more civilized age,
+
 ...Java feels like programming while wearing mittens,
 
-...COBOL feels like programming while wearing handcuffs while drunk in the back of a police cruiser,
+...COBOL feels like programming while wearing handcuffs and drunk in the back of a police cruiser,
 
 ...and PHP feels like punching yourself in the balls over and over.
 
@@ -82,7 +86,7 @@ Ways Go is like C (an incomplete list):
 - Small: 25 keywords
 
   - C:
-  
+
     - ANSI C: 32
     - C99: 36
     - C11: 45
