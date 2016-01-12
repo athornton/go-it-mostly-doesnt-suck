@@ -118,6 +118,34 @@ Things Go Does Better Than C (an incomplete list):
 
 ----
 
+Enough Theory
+#############
+
+Hello, World.
+
+.. code:: go
+
+  package main
+
+  import "fmt"
+
+  func main() {
+    fmt.Printf("Hello, world!\n")
+  }
+
+----
+
+Line-by-line
+############
+
+.. Code:: go
+
+  package main
+
+Select a namespace; "main" is used
+
+----
+
 Questions?
 ##########
 
