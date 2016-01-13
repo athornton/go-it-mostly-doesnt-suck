@@ -121,7 +121,8 @@ Things Go Does Better Than C (an incomplete list):
 Enough Theory
 #############
 
-Hello, World.
+Hello, World
+============
 
 .. code:: go
 
@@ -175,9 +176,23 @@ Closes the function (and ends the program).
 Packages
 ########
 
-Standard library is quite large: math library, HTTP, regular expressions, JSON and XML encoding....
+Standard library is quite large: math library (including complex and arbitrary precision numbers ), HTTP, regular expressions, JSON and XML encoding, 2D graphics....
 
- - Feels like it's about as broad as Python's.  Not sure how accurate that is.
+No separate header files: the prologue of a Go binary (executable or library) contains functions and their signatures.
+
+Imports are done on a per-file basis.  That completely obviates the need for
+
+.. code:: c
+
+  #ifndef _GONKULATOR_H
+  #define _GONKULATOR_H
+  /* Code goes here */
+  #endif /* gonkulator.h */
+
+...and unused imports are a fatal compile-time error.
+
+- You will start off by cursing this.
+- Within a month you will wonder how you ever lived without it.
 
 ----
 
