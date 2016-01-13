@@ -130,7 +130,7 @@ Hello, World.
   import "fmt"
 
   func main() {
-    fmt.Printf("Hello, world!\n")
+    fmt.Println("Hello, world!")
   }
 
 ----
@@ -140,9 +140,44 @@ Line-by-line
 
 .. Code:: go
 
-  package main
+    package main
 
-Select a namespace; "main" is used
+Select a package; "main" is used for commands.
+
+.. Code:: go
+
+    import "fmt"
+
+Packages each have their own namespace; ``fmt`` is for text formatting.
+
+.. Code:: go
+
+      func main() {
+
+Just like in C, the primary entry point is called ``main()``.  In Go, ``main()`` takes no arguments and returns nothing.
+
+  - If you're wondering, ``os.Argv`` is where the rest of the command line lives.
+
+.. Code:: go
+
+        fmt.Println("Hello, world!")
+
+Println comes from the ``fmt`` package.  It is capitalized (we'll see why later), and adds a newline to the end of its arguments.
+
+.. Code:: go
+
+      }
+
+Closes the function (and ends the program).
+
+----
+
+Packages
+########
+
+Standard library is quite large: math library, HTTP, regular expressions, JSON and XML encoding....
+
+ - Feels like it's about as broad as Python's.  Not sure how accurate that is.
 
 ----
 
