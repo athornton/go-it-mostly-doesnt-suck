@@ -1,7 +1,7 @@
 body {
 	margin-right: 80 px;
 	margin-bottom: 80 px;
-	background: url("../images/sp-adam.png") bottom right;	
+	background: url("../images/sp-adam.png") bottom right;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	background-color: #e8e8e8;
@@ -21,6 +21,6 @@ h2 {
     font-size: x-large;
 }
 
-.strike: {
+.strike {
 	text-decoration: line-through;
 }
