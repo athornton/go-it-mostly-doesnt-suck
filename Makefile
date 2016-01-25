@@ -1,7 +1,8 @@
 all:	out/index.html
 
 out/index.html:	Makefile talk.rst css/talk.css css/talk_dark.css \
- images/sp-adam.png images/Learn-Go.png out/favicon.ico
+ images/sp-adam.png images/Learn-Go.png images/gophercolor.png \
+ out/favicon.ico
 	hovercraft talk.rst out
 
 out/favicon.ico: images/favicon.ico

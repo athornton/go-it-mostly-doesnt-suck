@@ -179,7 +179,7 @@ Closes the function (and ends the program).
 Packages
 ########
 
-Standard library is quite large: math library (including complex and arbitrary precision numbers ), HTTP, regular expressions, JSON and XML encoding, 2D graphics....
+Standard library is quite robust: math library (including complex and arbitrary precision numbers ), HTTP, regular expressions, JSON and XML encoding, 2D graphics....
 
 No separate header files: the prologue of a Go binary package contains function names and their signatures.
 
@@ -210,6 +210,8 @@ Exported functions' names start with an uppercase letter.
 - This is another thing that you will start off with "what kind of Mickey Mouse crap is this?" and within a month you will just accept it as a totally reasonable convention.
 
 Everything is statically linked.
+
+- Well, kinda.  If you use cgo, you're linking to libc, and on OS X you have three system libraries.
 
 - No dependency hell.
 
@@ -280,6 +282,450 @@ The ``GO15VENDOREXPERIMENT`` didn't really work.  Not all experiments do.
 ``gopkg.in`` is amusing.  It uses git tag conventions to redirect an import of ``gopkg.in/user/pkg.v3`` to ``github.com/user/pkg`` with tag ``v3`` or tag ``v3.x`` or ``v3.x.y``.  That's still pretty hinky and ad-hoc, though.
 
 But anyone who insists super-stridently about this is blowing smoke and concern trolling you anyway.  It's definitely Not That Terrible.
+
+----
+
+Things You Will Miss
+####################
+
+No REPL loop.
+
+- You can use the Playground at golang.org, or set up your own playground, but it isn't the same.
+
+- On the other hand, building is really quite fast, and "go run" comes close.  It's not the same, though.
+
+No optional arguments.
+
+- Pointer arguments, and ``nil`` acting as "no argument," is the common idiom, but feels gross.
+
+----
+
+Things You Might Miss
+#####################
+
+Generics.
+
+- Go isn't Java.  Or C++.
+
+- ``go generate`` actually lets you build a regex-based generics system, if you insist.
+
+Preprocessor macros.
+
+- Function calls are pretty fast these days; it isn't 1978 anymore.
+
+- ``go generate`` actually lets you build a preprocessor macro expansion system, if you insist.
+
+----
+
+Things You Won't Miss
+#####################
+
+Pointer arithmetic.
+
+``malloc()``, ``free()``.
+
+``#ifdef`` guards.
+
+----
+
+Unicode Support
+###############
+
+There's a ``unicode`` package.
+
+Strings are Unicode already.  But really they're byte arrays.
+
+Mostly it just works.  At least I haven't had to think about it much.
+
+----
+
+Arrays and Slices
+#################
+
+Arrays have a specific fixed length.  Slices can grow and shrink.  Each one is sequential storage for elements of a particular type.
+
+This is one of the confusing bits of Go, and it's hard to address in a short talk.  You get used to it pretty quickly.
+
+Slices support indexing:
+
+.. code:: go
+
+    import "fmt"
+    //...
+    l := []string{"a","b","c","d"}
+    fmt.Printf("%v\n",l[0:2]) // [a b]
+    fmt.Printf("%v\n",l[:2])  // [a b]
+    fmt.Printf("%v\n",l[2:4]) // [c d]
+    fmt.Printf("%v\n",l[:4])  // [c d]
+    fmt.Printf("%v\n",l[:])   // [a b c d]
+    // BUT:
+    // fmt.Printf("%v\n",[:-1]) yields ...
+    // invalid slice index -1 (index must be non-negative)
+    // Go isn't python.
+    fmt.Printf("%v\n",l[:len(l)-1]) // [a b c]
+
+----
+
+Unit Testing
+############
+
+A little like Perl's test framework.
+
+- A test suite for ``whatever.go`` should be in the same package as ``whatever``.
+
+- It should have a filename of ``whatever_test.go``.
+
+- Any function named ``TestXxx``, where ``Xxx`` is any alphanumeric string that doesn't start with a lowercase letter, gets run.  The signature looks like ``func TestXxx(*testing.T)``.
+
+- There are also ``BenchmarkXxx`` and ``ExampleXxx`` functions.
+
+Run it with ``go test``.
+
+https://golang.org/pkg/testing/
+
+----
+
+A Little Tour Of Unusual Go Features
+####################################
+
+There are some things Go does that aren't much like C at all.  Here are a few:
+
+- Goroutines / Channels
+
+- Interfaces / Object Model
+
+- ``defer``
+
+- Error handling / Exceptions
+
+----
+
+Goroutines
+##########
+
+Go's concurrency support is in the runtime.  It uses things called goroutines (from "coroutines"), which are pretty much threads, but don't require OS support.
+
+- Memory is shared, so you are responsible for doing your own mutex stuff (it's in the ``sync`` library)
+
+- You start a goroutine with: ``go RunSomething()`` or with an anonymous closure: ``go func() { ... }``
+
+- If you just want it to run, great, you're done (goroutines will exit when the main function exits).
+
+- For synchronization, you can use ``sync.Waitgroup``, or use channels.
+
+----
+
+Channels
+########
+
+Go's channels are a synchronization mechanism.  A channel passes a particular type of value.
+
+.. code:: go
+
+    i := make(chan int)        // Unbuffered
+    s := make(chan string, 3)  // Capacity of three strings
+    i <- 1                     // Write to channel
+    r := <-s                   // Read from channel
+
+Typically you'd use multiple channels in a ``select`` loop, which looks just like a ``select()`` loop in C or old-school Perl or whatever:
+
+.. code:: go
+
+    for {
+        select {
+            case m :<- c1:
+                HandleC1(m)
+            case m :<- c2:
+                HandleC2(m)
+            // ....
+        }
+    }
+
+See https://talks.golang.org/2012/waza.slide
+
+----
+
+Interfaces
+##########
+
+This is how you get polymorphism in Go:
+
+- A type supports particular methods.
+
+- An interface is a collection of methods.
+
+- Anything that supports all those methods therefore implements that interface.
+
+----
+
+Type Declaration
+################
+
+Most of the types you declare will probably be either array or struct types.  Like so:
+
+.. code:: go
+
+    type Userlist []string
+    type Employee struct {
+        Firstname string
+        Lastname  string
+        Salary    float64 // We have grand ambitions
+        Title     string
+    }
+
+----
+
+Type Methods
+############
+
+Look just like function definitions, except they have another parameter before the function name.
+
+.. code:: go
+
+    func (e *Employee) ChangeTitle(title string) string {
+        // Needs to be a pointer to Employee because we are modifying it.
+        oldtitle := e.Title
+        e.Title = title
+        return oldtitle
+    }
+
+----
+
+Interface Definition
+####################
+
+An interface is just a set of type methods that an object must provide.
+
+.. code:: go
+
+    type Stringer interface {
+        String() string
+    }
+
+The various fmt.Printf variations use an object's String() method, if it exists, to display the textual representation of an object.  If it doesn't have one, you just get the list of fields in order.  Let's add Stringer to Employee.
+
+----
+
+Interface Definition Example
+############################
+
+.. code:: go
+
+    import "fmt"
+    e := Employee{
+        Firstname: "Edna",
+        Lastname: "Schultz",
+        Title: "Director of Something",
+        Salary: 91532.20,
+    }
+    fmt.Println("Employee: %v\n",e)
+
+Yields: ``Employee: {Edna Schultz 91532.2 Director of Something}``
+
+That's ugly and we don't want to display the salary when we print the object.  So let's add a ``String()`` method:
+
+.. code:: go
+
+    func (e Employee) String() string {
+        s := e.Lastname + ", " + e.Firstname + " [" + e.Title + "]"
+        return s
+    }
+
+Now we get ``Employee: Schultz, Edna [Director of Something]``, which looks a lot better.
+
+----
+
+``defer``
+#########
+
+``defer`` is the best thing since sliced bread.
+
+When you ``defer`` a function, you are saying: when you exit this function, whether normally or via a ``panic()`` (we're getting to those next), run the deferred function.
+
+- ``defer`` statements are run in reverse order of declaration (that is, LIFO)
+
+- arguments are evaluated when the ``defer`` statement is encountered
+
+.. code:: go
+
+    bucket, err := couchbase.GetBucket(Bucketname)
+    if err != nil {
+        // Complain, and then...
+        return err
+    }
+    // If we got here, we have a bucket.  We want to close it when we exit,
+    //  however we exit
+    defer bucket.Close()
+    // ... do stuff with the bucket
+    return nil
+
+This makes it ever so much easier to remember to clean up resources when you're done with them.
+
+----
+
+Errors and Exceptions
+#####################
+
+Go is not Java.  In general, you want to return an error, not throw an exception.
+
+Functions can return multiple values, so a function signature that returns a result and an error is a very common idiom.
+
+An error is a built-in type.
+
+- As it happens, it's an interface type:
+
+.. code:: go
+
+    type error interface {
+        Error() string
+    }
+
+So you're free to define your own with more structure if you like (HTTP is a good example).
+
+----
+
+Using Errors
+############
+
+.. code:: go
+
+    import "fmt"
+    func Scarborough(arg string) error {
+        switch string {
+            case "parsley", "sage", "rosemary", "thyme"
+                return nil
+            default:
+                return fmt.Errorf("ingredient '%s' not Simon-and-Garfunkel approved.")
+        }
+    }
+
+Typical calling convention is:
+
+.. code:: go
+
+    err := Scarborough(arg)
+    if err != nil {
+        fmt.Printf("Guess *you're* not going to Scarborough Fair: %v",err)
+    }
+
+----
+
+Exceptions
+##########
+
+Exceptions are *exceptional*.  Errors are not generally exceptional.
+
+``panic(s)``
+
+A ``panic`` in function ``F`` does the following:
+
+1. Stops execution of ``F``.
+
+2. Executes all of ``F``'s deferred functions.
+
+3. Returns to the caller of ``F``.
+
+4. Acts as if ``F`` had been a call to ``panic``.
+
+----
+
+Recovering from Panic
+#####################
+
+``recover`` only works inside a deferred function.  It catches the ``panic`` value (a string) and returns it.
+
+If a ``panic`` reaches the top of a goroutine's call stack, the program exits and prints a stack trace.
+
+The standard library package ``json`` contains a good example of this.
+
+In general, you'd only recover a panic inside a library, because you generally want to return an error rather than destroy your caller's program.
+
+----
+
+Some Random Language Nerd Things
+################################
+
+Functions are first-class objects.
+
+- This also makes dispatch tables really easy.
+
+You can use anonymous functions to make closures.
+
+Go supports reflection, so you can do type introspection.
+
+- The only time I've actually needed this in the wild was to get some non-exported fields out of an opaque data type, which I could safely do only because I understood the problem domain and knew that my private certificate would always really be an RSA certificate.
+
+- If you find yourself using ``reflect`` much, or the ``unsafe`` package, and you're not writing some sort of decoder/parser/unmarshaller thing, you are probably doing it wrong.
+
+----
+
+Editor Support
+##############
+
+There appears to be editor support for the major editors, by which I mean:
+
+- Emacs (my choice)
+
+- Atom (my other choice)
+
+- Vim (if you swing that way)
+
+- Brackets (if you're a Web Design Hipster)
+
+- Eclipse (if you can't turn loose of Java)
+
+- Sublime (if you want something like Atom and hate saving money)
+
+- Nano/Pico/Joe/Gedit (if you don't like learning editors)
+
+- BBedit (you have a Mac and hate saving money)
+
+- Visual Studio (what's wrong with you?)
+
+- Notepad++ (no, really, go see a doctor)
+
+- ... (https://github.com/golang/go/wiki/IDEsAndTextEditorPlugins)
+
+I can vouch for Emacs and Atom.
+
+----
+
+Code Style
+##########
+
+Brilliant Gordian Knot solution.
+
+- There's only one way to do it.
+
+- ``go fmt``
+
+Set your editor to display tabs at a width you like, let the editor mode deal with it, and set up the environment to run ``go fmt`` on save.
+
+----
+
+Godoc
+#####
+
+https://blog.golang.org/godoc-documenting-go-code
+
+Basically, put a comment immediately before the function, with no intervening space, make sure that it starts with the name of the thing it's describing, and if it is on Bitbucket, GitHub, or Launchpad, then the first time anyone looks for it by import path, the documentation is autogenerated.
+
+----
+
+Cute Logo
+#########
+
+.. image:: images/gophercolor.png
+  :height: 600px
+
+Gopher from golang.org, designed by Renée French, licensed under Creative Commons Attribution 3.0 License.
+
+----
+
+Larger Example, Depending On Time
+#################################
+
+Let's write a thing.  Who wants to write a what?
 
 ----
 
