@@ -1,4 +1,3 @@
-# containers-for-curmudgeons
+# go-it-mostly-doesnt-suck
 
-This is an opinionated presentation I give about containerization,
-software design, and human folly.
+Go: the programming language that, most of the time, doesn't make you want to stab yourself in the eyes with a spork.
