@@ -595,7 +595,7 @@ Using Errors
             case "parsley", "sage", "rosemary", "thyme"
                 return nil
             default:
-                return fmt.Errorf("ingredient '%s' not Simon-and-Garfunkel approved.")
+                return fmt.Errorf("ingredient '%s' not Simon-and-Garfunkel approved")
         }
     }
 
