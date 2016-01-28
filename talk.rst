@@ -413,6 +413,8 @@ Go's concurrency support is in the runtime.  It uses things called goroutines (f
 
 - For synchronization, you can use ``sync.Waitgroup``, or use channels.
 
+- There is an excellent page on this at: https://divan.github.io/posts/go_concurrency_visualize/
+
 ----
 
 Channels
