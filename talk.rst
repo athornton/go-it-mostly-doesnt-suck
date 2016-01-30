@@ -33,11 +33,9 @@ Preliminaries
 
 All software sucks.
 
-All hardware sucks.
-
-All users suck.
-
 I hope to convince you in the next few dozen minutes that Go sucks less than most software.
+
+All hardware also sucks, and all users suck, too, but that's not what this talk is about.
 
 ----
 
@@ -318,13 +316,51 @@ Preprocessor macros.
 ----
 
 Things You Won't Miss
-#####################
+############################
 
-Pointer arithmetic.
+C:
 
-``malloc()``, ``free()``.
+ - Pointer arithmetic.
 
-``#ifdef`` guards.
+ - ``malloc()``, ``free()``.
+
+ - ``#ifdef`` guards.
+
+Java:
+
+ - FactoryDBConnectorFactoryAbstractFactoryImplementorFactorySetterFactoryGeneratorFactory()
+
+ - Working in a language that Oracle only resentfully supports.
+
+  - P.S. Larry Ellison hates you.
+
+PHP:
+
+ - Everything.
+
+
+----
+
+If You're Not A Programmer Yet But Would Like To Learn
+######################################################
+
+I think Go would be a pretty good first language.
+
+It would be an even better second language.  Python is more approachable and forgiving.  But when you're ready to take the training wheels off, here are some nice features.  They should look familiar:
+
+- Built-in maps
+
+- It doesn't try to cram functional programming down your neck when you're still getting the hang of imperative programming (I'm looking at *you*, Javascript).
+
+- Small number of keywords and sane syntax makes it easy to keep in your head, and you can probably read other people's Go (I'm looking at *you*, Perl).
+
+- Object orientation and concurrency are mostly orthogonal to the rest of the language, so you can learn them when you're ready, and still write perfectly reasonable programs without them first.
+
+- Culture that values lucid and concise over either:
+
+ - clever and incomprehensible, or
+
+ - prolix, repetitive, and boring.
 
 ----
 
@@ -597,7 +633,7 @@ Using Errors
             case "parsley", "sage", "rosemary", "thyme"
                 return nil
             default:
-                return fmt.Errorf("ingredient '%s' not Simon-and-Garfunkel approved")
+                return fmt.Errorf("ingredient '%s' not Simon-and-Garfunkel approved",arg)
         }
     }
 
