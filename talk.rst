@@ -382,7 +382,7 @@ Arrays have a specific fixed length.  Slices can grow and shrink.  Each one is s
 
 This is one of the confusing bits of Go, and it's hard to address in a short talk.  You get used to it pretty quickly.
 
-Slices support indexing:
+Slices support indexing; the index intervals are half-open, like Python:
 
 .. code:: go
 
@@ -392,12 +392,12 @@ Slices support indexing:
     fmt.Printf("%v\n",l[0:2]) // [a b]
     fmt.Printf("%v\n",l[:2])  // [a b]
     fmt.Printf("%v\n",l[2:4]) // [c d]
-    fmt.Printf("%v\n",l[:4])  // [c d]
+    fmt.Printf("%v\n",l[2:])  // [c d]
     fmt.Printf("%v\n",l[:])   // [a b c d]
     // BUT:
     // fmt.Printf("%v\n",[:-1]) yields ...
     // invalid slice index -1 (index must be non-negative)
-    // Go isn't python.
+    // Go isn't Python.
     fmt.Printf("%v\n",l[:len(l)-1]) // [a b c]
 
 ----
