@@ -108,13 +108,21 @@ But then why not just use C?
 Things Go Does Better Than C (an incomplete list):
 
 - No explicit memory management
+
 - Much better type-safety
+
 - Very rich set of standard libraries
+
 - Import dependency management
+
 - The range operator
+
 - Interfaces
+
 - Concurrency
-- Native map type
+
+- Native map type (you may know these as hashes, dicts, or associative arrays)
+
 - A 2006 view of what's cheap and expensive, not a 1975 view
 
 ----
@@ -338,8 +346,17 @@ PHP:
 
  - Everything.
 
+----
+
+The Best Thing About Go
+##################################
+
+I'm not sure how to define this crisply, but:
+
+In Go, the gap between having a program that compiles and a program that does what I want it to is consistently much smaller than it is in any other language I've used, and I've used a lot of languages.
 
 ----
+
 
 If You're Not A Programmer Yet But Would Like To Learn
 ######################################################
@@ -348,7 +365,9 @@ I think Go would be a pretty good first language.
 
 It would be an even better second language.  Python is more approachable and forgiving.  But when you're ready to take the training wheels off, here are some nice features.  They should look familiar:
 
-- Built-in maps
+- Built-in maps.
+
+ - Other languages may call these things hashes, dicts, or associative arrays.  Whatever you call them, they're wonderfully useful.
 
 - It doesn't try to cram functional programming down your neck when you're still getting the hang of imperative programming (I'm looking at *you*, Javascript).
 
@@ -757,6 +776,13 @@ Cute Logo
   :height: 600px
 
 Gopher from golang.org, designed by Renée French, licensed under Creative Commons Attribution 3.0 License.
+
+----
+
+Oh, And There's This
+####################
+
+Google it as ``golang`` rather than ``go`` or you will be sad.
 
 ----
 
