@@ -421,6 +421,64 @@ Slices support indexing; the index intervals are half-open, like Python:
 
 ----
 
+Maps
+####
+
+Maps: just like Perl hashes or Python dicts.
+
+- The only tricky bit is that you have to allocate space for them first.
+
+.. code:: go
+
+	var m map[string]string
+	m["foo"] = "bar"
+	fmt.Printf("%+v\n",m)
+
+- Yields ``panic: assignment to entry in nil map``
+
+- You need:
+
+.. code:: go
+
+  m := make(map[string]string)
+  m["foo"] = "bar"
+  fmt.Printf("%+v\n",m)
+
+- Yields ``map[foo:bar]``
+
+----
+
+More About Maps
+###############
+
+A map key must be a comparable type.  A value can be any type.
+
+- Comparable types:
+
+  - Boolean
+  - Integer
+  - Floating Point
+  - Complex
+  - String
+  - Pointer
+  - Channel
+  - Interface
+  - non-interface type X and interface T if X is comparable and X implements T
+  - Structs if all fields are comparable
+  - Arrays if values of the array type are comparable
+
+- Non-comparable (except to nil):
+
+  - Slice
+  - Map
+  - Function
+
+tl;dr sane map keys are going to work (and many insane keys).
+
+ - See https://golang.org/ref/spec#Comparison_operators
+
+----
+
 Unit Testing
 ############
 
