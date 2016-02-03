@@ -268,7 +268,7 @@ Package functions are always referred to as package dot function.  So you're fre
 
 - So you can't have the case where you call ``Tan()`` and it runs the one from the ``salon`` package when you thought you were calling the ``math`` one.
 
-- Or ```redefinition of 'Tan'``.
+- Or ``redefinition of 'Tan'``.
 
 - Since all dependencies are explicit and done at the file level, you also can't get into the situation where the app depends on version ``1.2.16`` of ``log4j``, but one of its other dependencies imported version ``1.2.11`` before your import happened.  Not that this has ever happened anywhere I ever worked.
 
