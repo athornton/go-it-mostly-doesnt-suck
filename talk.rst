@@ -782,6 +782,8 @@ There appears to be editor support for the major editors, by which I mean:
 - Emacs (my choice)
 
 - Atom (my other choice)
+    
+ - Look at [Go-Plus](https://atom.io/packages/go-plus) for better Golang support.
 
 - Vim (if you swing that way)
 
