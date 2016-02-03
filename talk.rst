@@ -298,7 +298,7 @@ No REPL loop.
 
 - You can use the Playground at golang.org, or set up your own playground, but it isn't the same.
 
-- On the other hand, building is really quite fast, and "go run" comes close.  It's not the same, though.
+- On the other hand, building is really quite fast, and "go run" comes close.  It's still not really having a REPL loop.
 
 No optional arguments.
 
@@ -479,14 +479,63 @@ tl;dr sane map keys are going to work (and many insane keys).
 
 ----
 
+Structs
+#######
+
+A lot like C.
+
+.. code:: go
+
+  type Employee struct {
+      Firstname string
+      Lastname  string
+      Salary    float64 // We have grand ambitions
+      Title     string
+  }
+
+Access fields with a dot.
+
+.. code:: go
+
+  var e Employee
+  e.Title="Yes-Man, Third Class"
+
+----
+
+Embedded Structs
+################
+
+Sort of like an inheritance-by-composition model.
+
+.. code:: go
+
+  type Name struct {
+    Firstname string
+    Lastname  string
+    Middlename string
+    Suffix string
+  }
+  type Employee struct {
+    Name
+    Salary float64
+    Title string
+  }
+  var e Employee
+
+You can still refer directly to ``e.Firstname`` (you can also say ``e.Name.Firstname``)
+
+(https://golang.org/doc/effective_go.html#embedding)
+
+----
+
 Unit Testing
 ############
 
 A little like Perl's test framework.
 
-- A test suite for ``whatever.go`` should be in the same package as ``whatever``.
+- It must have a filename of ``whatever_test.go`` in the same directory as ``whatever.go``.
 
-- It should have a filename of ``whatever_test.go``.
+- Usually should be in the same package as ``whatever``, but sometimes it's handy to not do that; for example, if you want to only test exported functions.
 
 - Any function named ``TestXxx``, where ``Xxx`` is any alphanumeric string that doesn't start with a lowercase letter, gets run.  The signature looks like ``func TestXxx(*testing.T)``.
 
@@ -801,7 +850,7 @@ There appears to be editor support for the major editors, by which I mean:
 
 - ... (https://github.com/golang/go/wiki/IDEsAndTextEditorPlugins)
 
-I can vouch for Emacs and Atom.
+I can vouch for Emacs and Atom.  For the most part Go support doesn't ship with the editor and you will have to install a plugin to get it.
 
 ----
 
