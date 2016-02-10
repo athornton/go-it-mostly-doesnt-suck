@@ -369,13 +369,29 @@ It would be an even better second language.  Python is more approachable and for
 
  - Other languages may call these things hashes, dicts, or associative arrays.  Whatever you call them, they're wonderfully useful.
 
-- It doesn't try to cram functional programming down your neck when you're still getting the hang of imperative programming (I'm looking at *you*, Javascript).
+ - Small number of keywords and sane syntax makes it easy to keep in your head, and you can probably read other people's Go (I'm looking at *you*, Perl).
 
-- Small number of keywords and sane syntax makes it easy to keep in your head, and you can probably read other people's Go (I'm looking at *you*, Perl).
+----
 
-- Object orientation and concurrency are mostly orthogonal to the rest of the language, so you can learn them when you're ready, and still write perfectly reasonable programs without them first.
+Basically Imperative
+####################
 
-- Culture that values lucid and concise over either:
+- Go doesn't try to cram functional programming down your neck when you're still getting the hang of imperative programming (I'm looking at *you*, Javascript).
+
+- Object orientation and concurrency are mostly orthogonal to the rest of the language, although somehow without feeling bolted-on the way they do in, say, Perl.
+
+ - You can learn them when you're ready.
+
+ - You can still write perfectly reasonable and idiomatic programs without them first.
+
+----
+
+Also Nice For The Novice
+########################
+
+The built-in github-friendliness and autogeneration of documentation helps to create a particular culture around Go code that is made public.
+
+- That culture values lucid and concise over either:
 
  - clever and incomprehensible, or
 
