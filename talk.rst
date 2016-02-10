@@ -95,10 +95,10 @@ Ways Go is like C (an incomplete list):
   - Java: 50
   - PHP: 67
 
-- Statically typed
-- Ken Thompson and Rob Pike wrote a lot of it
-- Fundamentally procedural
-- Programming hipsters hate it
+- Go is statically typed.
+- Ken Thompson and Rob Pike wrote a lot of it.
+- It is fundamentally procedural.
+- Programming hipsters hate it.
 
 ----
 
@@ -107,23 +107,23 @@ But then why not just use C?
 
 Things Go Does Better Than C (an incomplete list):
 
-- No explicit memory management
+- No explicit memory management.
 
-- Much better type-safety
+- Much better type-safety.
 
-- Very rich set of standard libraries
+- Very rich set of standard libraries.
 
-- Import dependency management
+- Import dependency management.
 
-- The range operator
+- The range operator.
 
-- Interfaces
+- Interfaces.
 
-- Concurrency
+- Concurrency.
 
-- Native map type (you may know these as hashes, dicts, or associative arrays)
+- Native map type (you may know these as hashes, dicts, or associative arrays).
 
-- A 2006 view of what's cheap and expensive, not a 1975 view
+- A 2006 view of what's cheap and expensive, not a 1975 view.
 
 ----
 
@@ -583,7 +583,7 @@ There are some things Go does that aren't much like C at all.  Here are a few:
 Multiple Return Values
 ######################
 
-This is most commonly seen as
+This is most commonly seen as:
 
 .. code:: go
 
@@ -610,7 +610,7 @@ Goroutines
 
 Go's concurrency support is in the runtime.  It uses things called goroutines (from "coroutines"), which are pretty much threads, but don't require OS support.
 
-- Memory is shared, so you are responsible for doing your own mutex stuff (it's in the ``sync`` library)
+- Memory is shared, so you are responsible for doing your own mutex stuff (it's in the ``sync`` library).
 
 - You start a goroutine with: ``go RunSomething()`` or with an anonymous closure: ``go func() { ... }``
 
@@ -749,9 +749,9 @@ Now we get ``Employee: Schultz, Edna [Director of Something]``, which looks a lo
 
 When you ``defer`` a function, you are saying: when you exit this function, whether normally or via a ``panic()`` (we're getting to those next), run the deferred function.
 
-- ``defer`` statements are run in reverse order of declaration (that is, LIFO)
+- ``defer`` statements are run in reverse order of declaration (that is, LIFO).
 
-- arguments are evaluated when the ``defer`` statement is encountered
+- Arguments are evaluated when the ``defer`` statement is encountered.
 
 .. code:: go
 
@@ -885,7 +885,7 @@ There appears to be editor support for the major editors, by which I mean:
 
 - Nano/Pico/Joe/Gedit (if you don't like learning editors)
 
-- BBedit (you have a Mac and hate saving money)
+- BBedit (if you have a Mac and hate saving money)
 
 - Visual Studio (what's wrong with you?)
 
@@ -940,6 +940,13 @@ Larger Example, Depending On Time
 #################################
 
 Let's write a thing.  Who wants to write a what?
+
+----
+
+This Talk
+#########
+
+https://github.com/athornton/go-it-mostly-doesnt-suck.git
 
 ----
 
