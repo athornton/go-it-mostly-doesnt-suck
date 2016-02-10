@@ -552,6 +552,8 @@ A Little Tour Of Unusual Go Features
 
 There are some things Go does that aren't much like C at all.  Here are a few:
 
+- Multiple return values
+
 - Goroutines / Channels
 
 - Interfaces / Object Model
@@ -559,6 +561,31 @@ There are some things Go does that aren't much like C at all.  Here are a few:
 - ``defer``
 
 - Error handling / Exceptions
+
+----
+
+Multiple Return Values
+######################
+
+This is most commonly seen as
+
+.. code:: go
+
+  var err error
+  var s string
+  // ...
+  if somethingWentWrong() {
+    return "",fmt.Errorf("something went wrong")
+  }
+  return "bob's yer uncle", nil
+
+But you are free to return multiple values of any type:
+
+.. code:: go
+
+  func WeirdReturner(f float) (int, rune, *map[string][]float, error) {
+    ...
+  }
 
 ----
 
