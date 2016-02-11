@@ -369,7 +369,7 @@ It would be an even better second language.  Python is more approachable and for
 
  - Other languages may call these things hashes, dicts, or associative arrays.  Whatever you call them, they're wonderfully useful.
 
- - Small number of keywords and sane syntax makes it easy to keep in your head, and you can probably read other people's Go (I'm looking at *you*, Perl).
+- Small number of keywords and sane syntax makes it easy to keep in your head, and you can probably read other people's Go (I'm looking at *you*, Perl).
 
 ----
 
