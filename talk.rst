@@ -75,7 +75,7 @@ If Go feels like **programming**, then...
 
 ...COBOL feels like programming while wearing handcuffs and drunk in the back of a police cruiser,
 
-...and PHP feels like punching yourself in the balls over and over.
+...and PHP feels like punching yourself in the gender-appropriate sensitive spots over and over.
 
 ----
 
@@ -84,7 +84,7 @@ A Slightly Less Pungent Version?
 
 Ways Go is like C (an incomplete list):
 
-- Small: 25 keywords
+- It is small and can fit in your brain: 25 keywords, compared to:
 
   - C:
 
@@ -94,7 +94,12 @@ Ways Go is like C (an incomplete list):
 
   - Java: 50
   - PHP: 67
+  - Perl: *a lot* (https://learn.perl.org/docs/keywords.html)
+  - Fine, *fine*, keyword count isn't a perfect proxy for lucidity:
 
+    - Brainf**k: 8.  Each one is only one character.
+    - FRACTRAN: 0.  Just an initial integer, an ordered list of rational numbers, and two simple rules.
+  
 - Go is statically typed.
 - Ken Thompson and Rob Pike wrote a lot of it.
 - It is fundamentally procedural.
@@ -279,15 +284,18 @@ Dependency Versioning
 
 This is one of the things you're going to hear programming hipsters hate on Go about.  They have a point.
 
-``godep`` is pretty dreadful, actually.
+As of Go 1.6, the ``GO15VENDOREXPERIMENT`` becomes standard.
 
-I haven't used ``glide``.
+I didn't like it.
 
-The ``GO15VENDOREXPERIMENT`` didn't really work.  Not all experiments do.
+It just says that if you have a folder in the top-level of your project
+that is named ``vendor``, then you put a tree rooted there with the
+dependencies you need.
 
-``gopkg.in`` is amusing.  It uses git tag conventions to redirect an import of ``gopkg.in/user/pkg.v3`` to ``github.com/user/pkg`` with tag ``v3`` or tag ``v3.x`` or ``v3.x.y``.  That's still pretty hinky and ad-hoc, though.
+This seems hinky and ad-hoc.  But, on the bright side, it's simple and
+easy to understand.
 
-But anyone who insists super-stridently about this is blowing smoke and concern trolling you anyway.  It's definitely Not That Terrible.
+Anyone who insists super-stridently about this is blowing smoke and concern trolling you anyway.  It's definitely Not That Terrible.
 
 ----
 
@@ -336,12 +344,20 @@ C:
 
 Java:
 
- - FactoryDBConnectorFactoryAbstractFactoryImplementorFactorySetterFactoryGeneratorFactory()
+ - FactoryDBConnectorFactoryAbstractBeanImplementorEnterpriseSetterFactoryGeneratorFactory()
 
  - Working in a language that Oracle only resentfully supports.
 
   - P.S. Larry Ellison hates you.
 
+Python:
+
+ - Needing virtualenv to manage dependency hell.
+
+ - ``__init.py__`` and class directory structure/namespace.
+
+ - Duck typing.  Well, *I* don't miss it.  Go Interfaces give me an equivalent with strong compile-time type-checking.
+ 
 PHP:
 
  - Everything.
@@ -363,7 +379,7 @@ If You're Not A Programmer Yet But Would Like To Learn
 
 I think Go would be a pretty good first language.
 
-It would be an even better second language.  Python is more approachable and forgiving.  But when you're ready to take the training wheels off, here are some nice features.  They should look familiar:
+It would be an even better second language.  Python is more approachable and forgiving.  But here are some things that make Go a good first language:
 
 - Built-in maps.
 
@@ -768,6 +784,8 @@ When you ``defer`` a function, you are saying: when you exit this function, whet
 
 This makes it ever so much easier to remember to clean up resources when you're done with them.
 
+- Conceptually kind of like Python's context managers.
+
 ----
 
 Errors and Exceptions
@@ -887,13 +905,15 @@ There appears to be editor support for the major editors, by which I mean:
 
 - BBedit (if you have a Mac and hate saving money)
 
+- VSCode (surprisingly not horrible)
+
 - Visual Studio (what's wrong with you?)
 
 - Notepad++ (no, really, go see a doctor)
 
 - ... (https://github.com/golang/go/wiki/IDEsAndTextEditorPlugins)
 
-I can vouch for Emacs and Atom.  For the most part Go support doesn't ship with the editor and you will have to install a plugin to get it.
+I can vouch for Emacs, Atom, and, uh, VSCode.  For the most part Go support doesn't ship with the editor and you will have to install a plugin to get it.
 
 ----
 
