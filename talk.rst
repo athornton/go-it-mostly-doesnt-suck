@@ -966,7 +966,8 @@ Let's write a thing.  Who wants to write a what?
 This Talk
 #########
 
-https://github.com/athornton/go-it-mostly-doesnt-suck.git
+https://athornton.github.io/go-it-mostly-doesnt-suck (formatted)
+https://github.com/athornton/go-it-mostly-doesnt-suck.git (source)
 
 ----
 
