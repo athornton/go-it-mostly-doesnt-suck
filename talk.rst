@@ -20,6 +20,10 @@ Speaking As A Private Individual
 
 athornton@gmail.com
 
+|
+
+This presentation: https://goo.gl/uvrSpB
+
 ----
 
 .. role:: raw-role(raw)
@@ -284,13 +288,15 @@ Dependency Versioning
 
 This is one of the things you're going to hear programming hipsters hate on Go about.  They have a point.
 
-As of Go 1.6, the ``GO15VENDOREXPERIMENT`` becomes standard.
+As of Go 1.6, the ``GO15VENDOREXPERIMENT`` becomes standard, and no
+longer can be turned off in 1.7.
 
-I didn't like it.
+I didn't like it much.
 
 It just says that if you have a folder in the top-level of your project
 that is named ``vendor``, then you put a tree rooted there with the
-dependencies you need.
+dependencies you need; these dependencies are never auto-updated with
+`go get`.
 
 This seems hinky and ad-hoc.  But, on the bright side, it's simple and
 easy to understand.
