@@ -293,7 +293,7 @@ longer can be turned off in 1.7.
 
 I didn't like it much.
 
-It just says that if you have a folder in the top-level of your project
+It just says that if you have a folder in the top level of your project
 that is named ``vendor``, then you put a tree rooted there with the
 dependencies you need; these dependencies are never auto-updated with
 `go get`.
