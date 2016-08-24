@@ -308,7 +308,7 @@ Anyone who insists super-stridently about this is blowing smoke and concern trol
 Things You Will Miss
 ####################
 
-No REPL loop.
+No REPL loop [*].
 
 - You can use the Playground at golang.org, or set up your own playground, but it isn't the same.
 
@@ -317,6 +317,8 @@ No REPL loop.
 No optional arguments.
 
 - Pointer arguments, and ``nil`` acting as "no argument," is the common idiom, but feels gross.
+
+.. [*] Yes, I am aware this is like saying "ATM Machine".
 
 ----
 
