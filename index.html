@@ -14,7 +14,7 @@
   <span class="nx">aztls</span> <span class="s">"github.com/Azure/azure-sdk-for-go/core/tls"</span>
 <span class="p">)</span></pre><p>Refer to the standard TLS package as "tls" and Azure's as "aztls".</p><p>Package functions are always referred to as package dot function.  So you're free to have both:</p><pre class="highlight ">math.Tan()
 salon.Tan()</pre><ul><li>So you can't have the case where you call <tt>Tan()</tt> and it runs the one from the <tt>salon</tt> package when you thought you were calling the <tt>math</tt> one.</li><li>Or <tt>redefinition of 'Tan'</tt>.</li><li>Since all dependencies are explicit and done at the file level, you also can't get into the situation where the app depends on version <tt>1.2.16</tt> of <tt>log4j</tt>, but one of its other dependencies imported version <tt>1.2.11</tt> before your import happened.  Not that this has ever happened anywhere I ever worked.</li></ul></div><div class="step" step="13" data-x="20800" data-y="0"><h1 id="dependency-versioning">Dependency Versioning</h1><p>This is one of the things you're going to hear programming hipsters hate on Go about.  They have a point.</p><p>As of Go 1.6, the <tt>GO15VENDOREXPERIMENT</tt> becomes standard, and no
-longer can be turned off in 1.7.</p><p>I didn't like it much.</p><p>It just says that if you have a folder in the top-level of your project
+longer can be turned off in 1.7.</p><p>I didn't like it much.</p><p>It just says that if you have a folder in the top level of your project
 that is named <tt>vendor</tt>, then you put a tree rooted there with the
 dependencies you need; these dependencies are never auto-updated with
 go get.</p><p>This seems hinky and ad-hoc.  But, on the bright side, it's simple and
