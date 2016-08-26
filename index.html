@@ -106,7 +106,7 @@ easy to understand.</p><p>Anyone who insists super-stridently about this is blow
     <span class="nx">Error</span><span class="p">()</span> <span class="kt">string</span>
 <span class="p">}</span></pre><p>So you're free to define your own with more structure if you like (HTTP is a good example).</p></div><div class="step" step="39" data-x="62400" data-y="0"><h1 id="using-errors">Using Errors</h1><pre class="highlight code go"><span class="kn">import</span> <span class="s">"fmt"</span>
 <span class="kd">func</span> <span class="nx">Scarborough</span><span class="p">(</span><span class="nx">arg</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-    <span class="k">switch</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="k">switch</span> <span class="nx">arg</span> <span class="p">{</span>
         <span class="k">case</span> <span class="s">"parsley"</span><span class="p">,</span> <span class="s">"sage"</span><span class="p">,</span> <span class="s">"rosemary"</span><span class="p">,</span> <span class="s">"thyme"</span>
             <span class="k">return</span> <span class="kc">nil</span>
         <span class="k">default</span><span class="p">:</span>
