@@ -824,7 +824,7 @@ Using Errors
 
     import "fmt"
     func Scarborough(arg string) error {
-        switch string {
+        switch arg {
             case "parsley", "sage", "rosemary", "thyme"
                 return nil
             default:
